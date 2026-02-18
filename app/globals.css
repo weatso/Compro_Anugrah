@@ -1,112 +1,54 @@
 @import "tailwindcss";
 
-@plugin "tailwindcss-animate";
-
-@custom-variant dark (&:where(.dark, .dark *));
-
-/* 1. Definisi Variabel Warna (HSL) */
-@layer base {
-  :root {
-    /* Base: Deep Dark Purple (Ink) */
-    --background: 245 45% 5%;
-    --foreground: 260 20% 96%;
-
-    /* Card */
-    --card: 255 30% 8%;
-    --card-foreground: 260 20% 96%;
- 
-    /* Popover */
-    --popover: 255 30% 8%;
-    --popover-foreground: 260 20% 96%;
- 
-    /* Primary: Electric Purple */
-    --primary: 253 100% 59%;
-    --primary-foreground: 0 0% 100%;
- 
-    /* Secondary: Royal Purple */
-    --secondary: 256 100% 65%;
-    --secondary-foreground: 0 0% 100%;
- 
-    /* Muted */
-    --muted: 255 20% 15%;
-    --muted-foreground: 255 10% 65%;
- 
-    /* Accent: Gold */
-    --accent: 44 91% 61%;
-    --accent-foreground: 245 45% 5%;
- 
-    /* Destructive */
-    --destructive: 0 62.8% 30.6%;
-    --destructive-foreground: 210 20% 98%;
- 
-    /* Border */
-    --border: 255 20% 15%;
-    --input: 255 20% 15%;
-    --ring: 253 100% 59%;
- 
-    --radius: 0.5rem;
-  }
-}
-
-/* 2. Daftarkan Warna ke Tema Tailwind v4 */
 @theme {
-  --color-border: hsl(var(--border));
-  --color-input: hsl(var(--input));
-  --color-ring: hsl(var(--ring));
-  --color-background: hsl(var(--background));
-  --color-foreground: hsl(var(--foreground));
+  /* Warna Anugrah Ventures - Heavy Bettor Palette */
+  --color-background: #050505; /* Deep Onyx */
+  --color-foreground: #ededed;
   
-  --color-primary: hsl(var(--primary));
-  --color-primary-foreground: hsl(var(--primary-foreground));
+  --color-primary: #D4AF37; /* Metallic Gold */
+  --color-primary-foreground: #000000;
   
-  --color-secondary: hsl(var(--secondary));
-  --color-secondary-foreground: hsl(var(--secondary-foreground));
-  
-  --color-destructive: hsl(var(--destructive));
-  --color-destructive-foreground: hsl(var(--destructive-foreground));
-  
-  --color-muted: hsl(var(--muted));
-  --color-muted-foreground: hsl(var(--muted-foreground));
-  
-  --color-accent: hsl(var(--accent));
-  --color-accent-foreground: hsl(var(--accent-foreground));
-  
-  --color-popover: hsl(var(--popover));
-  --color-popover-foreground: hsl(var(--popover-foreground));
-  
-  --color-card: hsl(var(--card));
-  --color-card-foreground: hsl(var(--card-foreground));
+  --color-muted: #1a1a1a;
+  --color-muted-foreground: #a3a3a3;
 
-  --radius-lg: var(--radius);
-  --radius-md: calc(var(--radius) - 2px);
-  --radius-sm: calc(var(--radius) - 4px);
+  /* Font */
+  --font-sans: var(--font-sans);
   
-  --animate-shine: shine 5s ease infinite;
+  /* Animasi Marquee */
+  --animate-marquee: marquee 30s linear infinite;
   
-  @keyframes shine {
-    0% { background-position: 0% 50%; }
-    50% { background-position: 100% 50%; }
-    100% { background-position: 0% 50%; }
+  @keyframes marquee {
+    to { transform: translateX(-50%); }
   }
 }
 
-/* 3. Global Styles */
-@layer base {
-  * {
-    @apply border-border outline-ring/50;
-  }
-  body {
-    @apply bg-background text-foreground antialiased;
-    /* Background Grid Halus */
-    background-image: 
-      linear-gradient(to right, rgba(255,255,255,0.03) 1px, transparent 1px),
-      linear-gradient(to bottom, rgba(255,255,255,0.03) 1px, transparent 1px);
-    background-size: 50px 50px;
-  }
+/* Base Styles */
+body {
+  background-color: var(--color-background);
+  color: var(--color-foreground);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
 }
 
-@layer utilities {
-  .text-gradient-gold {
-    @apply bg-clip-text text-transparent bg-gradient-to-r from-white via-accent to-white bg-[length:300%_auto] animate-shine;
-  }
+/* LUXURY GEOMETRIC PATTERN 
+   Ini menggantikan grid kotak-kotak.
+   Motif: Garis diagonal halus saling silang (Diamond/Mesh) yang sangat tipis.
+   Efek: Seperti tekstur kertas fancy atau serat karbon matte.
+*/
+.bg-luxury-pattern {
+  background-color: var(--color-background);
+  background-image: 
+    linear-gradient(45deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px), 
+    linear-gradient(-45deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+  background-size: 40px 40px; /* Ukuran motif diperbesar agar elegan */
+  position: relative;
+}
+
+/* Vignette Overlay (Pinggiran gelap agar fokus ke tengah) */
+.luxury-vignette::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at center, transparent 0%, var(--color-background) 120%);
+  pointer-events: none;
 }
