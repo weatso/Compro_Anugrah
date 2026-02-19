@@ -1,20 +1,8 @@
 @import "tailwindcss";
 
 @theme {
-  /* Warna Anugrah Ventures - Heavy Bettor Palette */
-  --color-background: #050505; /* Deep Onyx */
+  --color-background: #050505;
   --color-foreground: #ededed;
-  
-  --color-primary: #D4AF37; /* Metallic Gold */
-  --color-primary-foreground: #000000;
-  
-  --color-muted: #1a1a1a;
-  --color-muted-foreground: #a3a3a3;
-
-  /* Font */
-  --font-sans: var(--font-sans);
-  
-  /* Animasi Marquee */
   --animate-marquee: marquee 30s linear infinite;
   
   @keyframes marquee {
@@ -22,33 +10,35 @@
   }
 }
 
-/* Base Styles */
-body {
+/* RESET PENTING UNTUK STICKY SCROLL */
+html, body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  /* JANGAN PAKAI overflow-x: hidden disini karena mematikan sticky */
+  /* Gunakan ini sebagai gantinya jika ingin menyembunyikan scroll horizontal: */
+  overflow-x: clip; 
   background-color: var(--color-background);
   color: var(--color-foreground);
-  font-family: var(--font-sans);
-  -webkit-font-smoothing: antialiased;
 }
 
-/* LUXURY GEOMETRIC PATTERN 
-   Ini menggantikan grid kotak-kotak.
-   Motif: Garis diagonal halus saling silang (Diamond/Mesh) yang sangat tipis.
-   Efek: Seperti tekstur kertas fancy atau serat karbon matte.
-*/
-.bg-luxury-pattern {
-  background-color: var(--color-background);
-  background-image: 
-    linear-gradient(45deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px), 
-    linear-gradient(-45deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
-  background-size: 40px 40px; /* Ukuran motif diperbesar agar elegan */
-  position: relative;
+/* Jika menggunakan Lenis Scroll, pastikan ini ada */
+html.lenis, html.lenis body {
+  height: auto;
 }
 
-/* Vignette Overlay (Pinggiran gelap agar fokus ke tengah) */
-.luxury-vignette::after {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background: radial-gradient(circle at center, transparent 0%, var(--color-background) 120%);
+.lenis.lenis-smooth {
+  scroll-behavior: auto !important;
+}
+
+.lenis.lenis-smooth [data-lenis-prevent] {
+  overscroll-behavior: contain;
+}
+
+.lenis.lenis-stopped {
+  overflow: hidden;
+}
+
+.lenis.lenis-scrolling iframe {
   pointer-events: none;
 }
