@@ -6,8 +6,12 @@ import { ReactLenis } from "lenis/react"; // Pastikan dev install lenis
 const inter = Inter({ subsets: ["latin"], variable: "--font-sans" });
 
 export const metadata: Metadata = {
-  title: "Anugrah Ventures",
+  title: "Anugerah Ventures",
   description: "Vision. Velocity. Ventures.",
+  robots: {
+    index: false,
+    follow: false,
+  },
 };
 
 export default function RootLayout({

@@ -2,11 +2,10 @@
 
 import { motion, Variants } from "framer-motion";
 import { ArrowRight, Globe, MessageCircle, Copy, Check } from "lucide-react";
-import Image from "next/image";
 import Link from "next/link";
 import { useState } from "react";
 
-export default function VipPage() {
+export default function AccessPage() {
   const [copied, setCopied] = useState(false);
 
   const handleCopy = () => {
@@ -41,11 +40,11 @@ export default function VipPage() {
   return (
     <div className="relative min-h-screen w-full bg-[#050505] text-[#ededed] overflow-hidden selection:bg-[#D4AF37] selection:text-black flex flex-col items-center justify-center p-4">
       
-      {/* --- LAYER 1: AMBIENT GLOW (Tetap dipertahankan untuk nuansa premium) --- */}
+      {/* --- LAYER 1: AMBIENT GLOW --- */}
       <div className="absolute top-[-20%] left-[-10%] w-[500px] h-[500px] bg-[#D4AF37]/10 blur-[150px] rounded-full pointer-events-none z-0" />
       <div className="absolute bottom-[-20%] right-[-10%] w-[500px] h-[500px] bg-blue-900/10 blur-[150px] rounded-full pointer-events-none z-0" />
 
-      {/* --- LAYER 2: CONTENT (Z-Index 10) --- */}
+      {/* --- LAYER 2: CONTENT --- */}
       <motion.div 
         variants={containerVars}
         initial="hidden"
@@ -58,12 +57,10 @@ export default function VipPage() {
           <div className="relative w-32 h-32 mx-auto mb-6">
             <div className="absolute inset-0 bg-[#D4AF37] blur-3xl opacity-30 rounded-full animate-pulse" />
             <div className="relative w-full h-full bg-[#0a0a0a] border border-white/10 rounded-full flex items-center justify-center overflow-hidden shadow-2xl">
-               <Image 
-                 src="/Logo.png" 
-                 alt="Anugrah Ventures" 
-                 fill 
-                 className="object-contain p-4" 
-                 priority
+               <img 
+                 src="/LogoDesc.png" 
+                 alt="Anugerah Ventures" 
+                 className="object-contain p-4 w-full h-full" 
                />
             </div>
           </div>
@@ -71,7 +68,7 @@ export default function VipPage() {
           <h1 className="text-2xl font-bold text-white tracking-tight mb-2">Natanael Alexander</h1>
           <div className="inline-block px-3 py-1 border border-[#D4AF37]/30 rounded-full bg-[#D4AF37]/10 backdrop-blur-sm">
              <p className="text-[#D4AF37] text-[10px] font-bold tracking-[0.2em] uppercase">
-               Founder & Managing Director
+               Founder & CEO
              </p>
           </div>
         </motion.div>
@@ -140,7 +137,8 @@ export default function VipPage() {
              {copied ? <Check className="w-3 h-3" /> : <Copy className="w-3 h-3" />}
              {copied ? "Link Copied" : "Share This Card"}
            </button>
-           <p className="mt-4 text-[10px] text-neutral-700">© 2026 Anugrah Ventures</p>
+           {/* UPDATE: Copyright Name */}
+           <p className="mt-4 text-[10px] text-neutral-700">© 2026 Anugerah Ventures</p>
         </motion.div>
 
       </motion.div>
