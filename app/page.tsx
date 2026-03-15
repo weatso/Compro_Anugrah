@@ -12,18 +12,18 @@ const VENTURES_DATA = [
     name: "WEATSO",
     category: "Premium IT Consulting",
     detail: "Membangun arsitektur perangkat lunak custom berskala enterprise. Kami mengaudit dan mengeksekusi infrastruktur B2B dengan presisi.",
-    link: "https://weatso.com",
+    link: "https://weatso.id",
     logo: "/logos/weatso.png"
   },
   {
     name: "EVORY",
     category: "Event Management Tech",
     detail: "Ekosistem digitalisasi hospitalitas. Registrasi pintar, QR check-in, dan analitik kehadiran real-time untuk penyelenggara acara elit.",
-    link: "https://evory.com",
+    link: "https://evory.id",
     logo: "/logos/evory.png"
   },
   {
-    name: "COLABZ",
+    name: "CO.LABZ",
     category: "Creative Digital Studio",
     detail: "Menerjemahkan visi bisnis menjadi identitas visual yang mematikan untuk dominasi pasar digital.",
     link: "#",
@@ -33,15 +33,15 @@ const VENTURES_DATA = [
     name: "ANUGERAH GROWTH",
     category: "Performance Agency",
     detail: "Where Aesthetics Meet Analytics. Agensi penggerak pertumbuhan berbasis data yang mengoptimalkan konversi dan penetrasi pasar.",
-    link: "#",
+    link: "https://anugerah-agency.vercel.app/",
     logo: "/logos/growth.png"
   },
   {
-    name: "MASS IT / POS",
+    name: "LOKAL",
     category: "Distributed Retail Systems",
     detail: "Infrastruktur Point-of-Sale dan solusi IT skalabel untuk digitalisasi sektor UMKM dan ekosistem ritel terdistribusi.",
     link: "#",
-    logo: "/logos/massit.png"
+    logo: "/logos/lokal.png"
   }
 ];
 
