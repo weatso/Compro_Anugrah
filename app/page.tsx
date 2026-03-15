@@ -13,7 +13,7 @@ const VENTURES_DATA = [
     category: "Premium IT Consulting",
     detail: "Membangun arsitektur perangkat lunak custom berskala enterprise. Kami mengaudit dan mengeksekusi infrastruktur B2B dengan presisi.",
     link: "https://weatso.id",
-    logo: "/logos/weatso.png"
+    logo: "/logos/weatso.svg"
   },
   {
     name: "EVORY",
