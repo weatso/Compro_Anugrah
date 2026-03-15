@@ -4,51 +4,57 @@ import { motion, AnimatePresence, useMotionTemplate, useMotionValue } from "fram
 import { useState, useEffect, MouseEvent } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { ArrowUpRight } from "lucide-react";
+import { ArrowUpRight, Lock } from "lucide-react";
 
-// --- DATA: 5 ACTIVE VENTURES ---
+// --- DATA: 5 VENTURES DENGAN STATUS OPERASIONAL ---
 const VENTURES_DATA = [
   {
     name: "WEATSO",
     category: "Premium IT Consulting",
     detail: "Membangun arsitektur perangkat lunak custom berskala enterprise. Kami mengaudit dan mengeksekusi infrastruktur B2B dengan presisi.",
-    link: "https://weatso.id",
-    logo: "/logos/weatso.svg"
+    link: "weatso.id",
+    logo: "/logos/weatso.svg",
+    status: "live"
   },
   {
     name: "EVORY",
     category: "Event Management Tech",
     detail: "Ekosistem digitalisasi hospitalitas. Registrasi pintar, QR check-in, dan analitik kehadiran real-time untuk penyelenggara acara elit.",
-    link: "https://evory.id",
-    logo: "/logos/evory.png"
+    link: "evory.id",
+    logo: "/logos/evory.png",
+    status: "live"
   },
   {
-    name: "CO.LABZ",
+    name: "COLABZ",
     category: "Creative Digital Studio",
     detail: "Menerjemahkan visi bisnis menjadi identitas visual yang mematikan untuk dominasi pasar digital.",
     link: "#",
-    logo: "/logos/colabz.png"
+    logo: "/logos/colabz.png",
+    status: "live"
   },
   {
     name: "ANUGERAH GROWTH",
     category: "Performance Agency",
     detail: "Where Aesthetics Meet Analytics. Agensi penggerak pertumbuhan berbasis data yang mengoptimalkan konversi dan penetrasi pasar.",
-    link: "https://anugerah-agency.vercel.app/",
-    logo: "/logos/growth.png"
+    link: "#",
+    logo: "/logos/growth.png",
+    status: "coming_soon"
   },
   {
     name: "LOKAL",
     category: "Distributed Retail Systems",
     detail: "Infrastruktur Point-of-Sale dan solusi IT skalabel untuk digitalisasi sektor UMKM dan ekosistem ritel terdistribusi.",
     link: "#",
-    logo: "/logos/lokal.png"
+    logo: "/logos/lokal.png",
+    status: "coming_soon"
   }
 ];
 
-// --- COMPONENT: SPOTLIGHT CARD ---
+// --- COMPONENT: SPOTLIGHT CARD DENGAN LOGIKA STATUS ---
 function SpotlightCard({ venture }: { venture: typeof VENTURES_DATA[0] }) {
   const mouseX = useMotionValue(0);
   const mouseY = useMotionValue(0);
+  const isComingSoon = venture.status === "coming_soon";
 
   function handleMouseMove({ currentTarget, clientX, clientY }: MouseEvent) {
     const { left, top } = currentTarget.getBoundingClientRect();
@@ -59,15 +65,17 @@ function SpotlightCard({ venture }: { venture: typeof VENTURES_DATA[0] }) {
   return (
     <div
       onMouseMove={handleMouseMove}
-      className="group relative flex flex-col justify-between overflow-hidden rounded-sm border border-white/10 bg-[#0a0a0a] px-8 py-10 transition-all hover:border-white/30 h-[320px]"
+      className={`group relative flex flex-col justify-between overflow-hidden rounded-sm border bg-[#0a0a0a] px-8 py-10 transition-all h-[320px]
+        ${isComingSoon ? "border-white/5 opacity-70" : "border-white/10 hover:border-white/30"}`}
     >
+      {/* Efek Spotlight: Diredupkan jika Coming Soon */}
       <motion.div
         className="pointer-events-none absolute -inset-px rounded-sm opacity-0 transition duration-300 group-hover:opacity-100"
         style={{
           background: useMotionTemplate`
             radial-gradient(
               400px circle at ${mouseX}px ${mouseY}px,
-              rgba(212,175,55,0.15),
+              ${isComingSoon ? "rgba(255,255,255,0.05)" : "rgba(212,175,55,0.15)"},
               transparent 80%
             )
           `,
@@ -77,20 +85,27 @@ function SpotlightCard({ venture }: { venture: typeof VENTURES_DATA[0] }) {
       <div className="relative z-10 flex justify-between items-start gap-6">
         <div>
           <h4 className="text-3xl font-black text-white tracking-tighter mb-2">{venture.name}</h4>
-          <p className="text-[#D4AF37] text-[10px] font-bold tracking-[0.2em] uppercase">
-            {venture.category}
-          </p>
+          <div className="flex items-center gap-3">
+             <p className="text-[#D4AF37] text-[10px] font-bold tracking-[0.2em] uppercase">
+               {venture.category}
+             </p>
+             {/* LABEL COMING SOON B2B */}
+             {isComingSoon && (
+                <span className="px-2 py-0.5 border border-neutral-700 bg-neutral-900 text-neutral-500 text-[8px] uppercase tracking-widest rounded-sm flex items-center gap-1">
+                  <Lock className="w-2 h-2" /> In Dev
+                </span>
+             )}
+          </div>
         </div>
         
-        <div className="relative w-14 h-14 shrink-0 mt-1 mr-2 opacity-40 grayscale group-hover:opacity-100 group-hover:grayscale-0 transition-all duration-500">
+        <div className={`relative w-14 h-14 shrink-0 mt-1 mr-2 transition-all duration-500
+          ${isComingSoon ? "opacity-20 grayscale" : "opacity-40 grayscale group-hover:opacity-100 group-hover:grayscale-0"}`}>
            <Image 
              src={venture.logo} 
              alt={`${venture.name} Logo`} 
              fill 
              className="object-contain object-center"
-             onError={(e) => {
-               (e.target as HTMLElement).style.display = 'none';
-             }}
+             onError={(e) => { (e.target as HTMLElement).style.display = 'none'; }}
            />
         </div>
       </div>
@@ -99,26 +114,34 @@ function SpotlightCard({ venture }: { venture: typeof VENTURES_DATA[0] }) {
         <p className="text-neutral-400 text-sm leading-relaxed mb-6 opacity-80 group-hover:opacity-100 transition-opacity duration-500">
           {venture.detail}
         </p>
-        <Link 
-          href={venture.link}
-          target="_blank"
-          className="inline-flex items-center gap-2 text-xs uppercase tracking-widest font-bold text-white/50 group-hover:text-white transition-colors"
-        >
-          Explore <ArrowUpRight className="w-4 h-4" />
-        </Link>
+        
+        {/* LOGIKA TOMBOL: Ganti tombol Explore jika Coming Soon */}
+        {isComingSoon ? (
+           <div className="inline-flex items-center gap-2 text-xs uppercase tracking-widest font-bold text-neutral-600 cursor-not-allowed">
+             Deploying Soon
+           </div>
+        ) : (
+           <Link 
+             href={venture.link}
+             target="_blank"
+             className="inline-flex items-center gap-2 text-xs uppercase tracking-widest font-bold text-white/50 group-hover:text-white transition-colors"
+           >
+             Explore <ArrowUpRight className="w-4 h-4" />
+           </Link>
+        )}
       </div>
     </div>
   );
 }
 
-// --- MAIN PAGE ---
+// --- MAIN PAGE (Optimasi Render Dipertahankan) ---
 export default function Home() {
   const [introPhase, setIntroPhase] = useState(0);
 
   useEffect(() => {
-    // Mempercepat timeline untuk mengurangi waktu tunggu render
-    const t1 = setTimeout(() => setIntroPhase(1), 1200); 
-    const t2 = setTimeout(() => setIntroPhase(2), 1800); 
+    // Timing eksekusi cepat untuk menghindari stutter
+    const t1 = setTimeout(() => setIntroPhase(1), 1000); 
+    const t2 = setTimeout(() => setIntroPhase(2), 1600); 
     return () => { clearTimeout(t1); clearTimeout(t2); };
   }, []);
 
@@ -159,7 +182,6 @@ export default function Home() {
         )}
       </AnimatePresence>
 
-      {/* NAVBAR: Tetap di-render agar target layoutId ada */}
       <nav className="fixed top-0 left-0 w-full z-50 px-6 py-6 mix-blend-difference flex justify-between items-center pointer-events-auto">
         <div className="group flex items-center gap-4 cursor-pointer relative">
           {introPhase === 2 && (
@@ -177,13 +199,9 @@ export default function Home() {
             </span>
           </div>
         </div>
-
       </nav>
 
-      {/* OPTIMASI KRUSIAL: 
-        Konten utama tidak akan di-render ke DOM sampai introPhase >= 1 
-        Ini membebaskan 90% CPU di detik pertama loading.
-      */}
+      {/* RENDER DITUNDA UNTUK OPTIMASI PERFORMA */}
       {introPhase >= 1 && (
         <motion.div
           initial={{ opacity: 0 }}
@@ -254,6 +272,7 @@ export default function Home() {
               <h3 className="text-4xl md:text-5xl font-black text-white tracking-tight">Visi yang Dieksekusi.</h3>
             </div>
 
+            {/* Grid disesuaikan untuk 5 item: 3 di atas, 2 di bawah */}
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
               {VENTURES_DATA.map((venture, index) => (
                 <SpotlightCard key={index} venture={venture} />

@@ -107,13 +107,15 @@ export default function AccessPage() {
           </div>
 
           {[
-            { name: "WEATSO", tag: "Custom Software", color: "hover:border-blue-500/50" },
-            { name: "EVORY", tag: "Event Tech", color: "hover:border-purple-500/50" },
-            { name: "COLABZ", tag: "Creative Agency", color: "hover:border-amber-500/50" }
+            { name: "WEATSO", tag: "Premium IT Consulting", color: "hover:border-blue-500/50", href: "https://weatso.com" },
+            { name: "EVORY", tag: "Event Management Tech", color: "hover:border-purple-500/50", href: "https://evory.com" },
+            { name: "COLABZ", tag: "Creative Digital Studio", color: "hover:border-amber-500/50", href: "#" },
+            { name: "ANUGERAH GROWTH", tag: "Performance Agency", color: "hover:border-rose-500/50", href: "#" },
+            { name: "LOKAL", tag: "Distributed Retail Systems", color: "hover:border-teal-500/50", href: "#" }
           ].map((v, i) => (
             <Link 
               key={i}
-              href="#"
+              href={v.href}
               className={`group relative flex items-center justify-between w-full p-4 bg-[#0a0a0a]/60 border border-white/10 rounded-sm transition-all duration-300 ${v.color}`}
             >
               <div className="flex flex-col">
@@ -137,7 +139,6 @@ export default function AccessPage() {
              {copied ? <Check className="w-3 h-3" /> : <Copy className="w-3 h-3" />}
              {copied ? "Link Copied" : "Share This Card"}
            </button>
-           {/* UPDATE: Copyright Name */}
            <p className="mt-4 text-[10px] text-neutral-700">© 2026 Anugerah Ventures</p>
         </motion.div>
 
