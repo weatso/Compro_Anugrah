@@ -76,7 +76,7 @@ export default function AccessPage() {
         {/* 2. PRIMARY ACTIONS */}
         <motion.div variants={itemVars} className="space-y-4 mb-10">
           <Link 
-            href="https://wa.me/6281234567890" 
+            href="https://wa.me/6287779668055" 
             className="group flex items-center justify-between w-full p-4 bg-[#D4AF37] text-black rounded-sm hover:bg-[#bfa030] transition-all shadow-[0_0_20px_rgba(212,175,55,0.2)] hover:shadow-[0_0_30px_rgba(212,175,55,0.4)]"
           >
             <span className="font-bold text-sm uppercase tracking-wider flex items-center gap-3">
@@ -107,9 +107,9 @@ export default function AccessPage() {
           </div>
 
           {[
-            { name: "WEATSO", tag: "Premium IT Consulting", color: "hover:border-blue-500/50", href: "https://weatso.com" },
-            { name: "EVORY", tag: "Event Management Tech", color: "hover:border-purple-500/50", href: "https://evory.com" },
-            { name: "COLABZ", tag: "Creative Digital Studio", color: "hover:border-amber-500/50", href: "#" },
+            { name: "WEATSO", tag: "Premium IT Consulting", color: "hover:border-blue-500/50", href: "https://weatso.id" },
+            { name: "EVORY", tag: "Event Management Tech", color: "hover:border-purple-500/50", href: "https://evory.id" },
+            { name: "COLABZ", tag: "Creative Digital Studio", color: "hover:border-amber-500/50", href: "https://co-labz-landing-page.vercel.app/" },
             { name: "ANUGERAH GROWTH", tag: "Performance Agency", color: "hover:border-rose-500/50", href: "#" },
             { name: "LOKAL", tag: "Distributed Retail Systems", color: "hover:border-teal-500/50", href: "#" }
           ].map((v, i) => (

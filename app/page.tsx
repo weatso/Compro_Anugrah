@@ -12,7 +12,7 @@ const VENTURES_DATA = [
     name: "WEATSO",
     category: "Premium IT Consulting",
     detail: "Membangun arsitektur perangkat lunak custom berskala enterprise. Kami mengaudit dan mengeksekusi infrastruktur B2B dengan presisi.",
-    link: "weatso.id",
+    link: "https://www.weatso.id/",
     logo: "/logos/weatso.svg",
     status: "live"
   },
@@ -20,7 +20,7 @@ const VENTURES_DATA = [
     name: "EVORY",
     category: "Event Management Tech",
     detail: "Ekosistem digitalisasi hospitalitas. Registrasi pintar, QR check-in, dan analitik kehadiran real-time untuk penyelenggara acara elit.",
-    link: "evory.id",
+    link: "https://www.evory.id/",
     logo: "/logos/evory.png",
     status: "live"
   },
@@ -28,7 +28,7 @@ const VENTURES_DATA = [
     name: "COLABZ",
     category: "Creative Digital Studio",
     detail: "Menerjemahkan visi bisnis menjadi identitas visual yang mematikan untuk dominasi pasar digital.",
-    link: "#",
+    link: "https://co-labz-landing-page.vercel.app/",
     logo: "/logos/colabz.png",
     status: "live"
   },
