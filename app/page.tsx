@@ -5,6 +5,7 @@ import { useState, useEffect, MouseEvent } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { ArrowUpRight, Lock } from "lucide-react";
+import Marquee from "react-fast-marquee";
 
 // --- DATA: 5 VENTURES DENGAN STATUS OPERASIONAL ---
 const VENTURES_DATA = [
@@ -13,7 +14,7 @@ const VENTURES_DATA = [
     category: "Premium IT Consulting",
     detail: "Membangun arsitektur perangkat lunak custom berskala enterprise. Kami mengaudit dan mengeksekusi infrastruktur B2B dengan presisi.",
     link: "https://www.weatso.id/",
-    logo: "/logos/weatso.svg",
+    logo: "/logos/weatso.png",
     status: "live"
   },
   {
@@ -25,28 +26,20 @@ const VENTURES_DATA = [
     status: "live"
   },
   {
-    name: "COLABZ",
-    category: "Creative Digital Studio",
-    detail: "Menerjemahkan visi bisnis menjadi identitas visual yang mematikan untuk dominasi pasar digital.",
-    link: "https://co-labz-landing-page.vercel.app/",
-    logo: "/logos/colabz.png",
+    name: "LADDIFY",
+    category: "Growth & SMM Agency",
+    detail: "Lebih dari sekadar SMM. Agensi strategis yang berfokus secara eksklusif pada pertumbuhan metrik digital, konversi, dan penetrasi pasar.",
+    link: "https://laddify.my.id",
+    logo: "/logos/laddify.png",
     status: "live"
-  },
-  {
-    name: "ANUGERAH GROWTH",
-    category: "Performance Agency",
-    detail: "Where Aesthetics Meet Analytics. Agensi penggerak pertumbuhan berbasis data yang mengoptimalkan konversi dan penetrasi pasar.",
-    link: "#",
-    logo: "/logos/growth.png",
-    status: "coming_soon"
   },
   {
     name: "LOKAL",
     category: "Distributed Retail Systems",
     detail: "Infrastruktur Point-of-Sale dan solusi IT skalabel untuk digitalisasi sektor UMKM dan ekosistem ritel terdistribusi.",
-    link: "#",
+    link: "https://pakailokal.com",
     logo: "/logos/lokal.png",
-    status: "coming_soon"
+    status: "live"
   }
 ];
 
@@ -98,14 +91,13 @@ function SpotlightCard({ venture }: { venture: typeof VENTURES_DATA[0] }) {
           </div>
         </div>
         
-        <div className={`relative w-14 h-14 shrink-0 mt-1 mr-2 transition-all duration-500
-          ${isComingSoon ? "opacity-20 grayscale" : "opacity-40 grayscale group-hover:opacity-100 group-hover:grayscale-0"}`}>
+        <div className={`relative w-14 h-14 md:w-16 md:h-16 shrink-0 mt-1 mr-2 transition-all duration-500
+          ${isComingSoon ? "opacity-20 grayscale" : "opacity-60 grayscale group-hover:opacity-100 group-hover:grayscale-0"}`}>
            <Image 
              src={venture.logo} 
              alt={`${venture.name} Logo`} 
              fill 
              className="object-contain object-center"
-             onError={(e) => { (e.target as HTMLElement).style.display = 'none'; }}
            />
         </div>
       </div>
@@ -236,7 +228,7 @@ export default function Home() {
                   className="flex flex-col md:flex-row gap-8 md:gap-16 border-t border-white/10 pt-8 max-w-2xl"
                >
                   <div>
-                     <span className="text-3xl font-bold text-white block">05</span>
+                     <span className="text-3xl font-bold text-white block">04</span>
                      <span className="text-xs text-neutral-500 uppercase tracking-widest">Active Portfolios</span>
                   </div>
                   <div>
@@ -247,43 +239,98 @@ export default function Home() {
             </div>
           </section>
 
-          <section className="py-24 px-6 md:px-20 bg-[#0a0a0a] relative border-t border-white/5">
+          <section className="py-24 px-6 md:px-20 bg-[#0a0a0a] relative border-t border-white/5 overflow-hidden">
             <div className="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-16 md:gap-24">
-              <div>
+              <motion.div 
+                initial={{ opacity: 0, y: 30 }} 
+                whileInView={{ opacity: 1, y: 0 }} 
+                viewport={{ once: true, margin: "-50px" }}
+                transition={{ duration: 0.6, ease: "easeOut" }}
+              >
                 <span className="text-[#D4AF37] font-mono text-xs tracking-widest uppercase mb-4 block">01 / The Capital Fallacy</span>
                 <h3 className="text-2xl md:text-3xl font-bold text-white mb-4">Eksekusi Mengalahkan Alasan Modal.</h3>
                 <p className="text-neutral-400 text-sm leading-relaxed">
                   Kami muak dengan narasi bahwa modal adalah satu-satunya penghalang inovasi. Banyak yang mengklaim memiliki keahlian, tetapi bersembunyi di balik alasan "kurang dana". Jika Anda benar-benar memiliki eksekusi dan visi yang tajam, buktikan. Kami akan menyediakan sisanya.
                 </p>
-              </div>
-              <div>
+              </motion.div>
+              <motion.div 
+                initial={{ opacity: 0, y: 30 }} 
+                whileInView={{ opacity: 1, y: 0 }} 
+                viewport={{ once: true, margin: "-50px" }}
+                transition={{ duration: 0.6, ease: "easeOut", delay: 0.2 }}
+              >
                 <span className="text-[#D4AF37] font-mono text-xs tracking-widest uppercase mb-4 block">02 / Relentless Resourcefulness</span>
                 <h3 className="text-2xl md:text-3xl font-bold text-white mb-4">Determinasi Tanpa Kompromi.</h3>
                 <p className="text-neutral-400 text-sm leading-relaxed">
                   Ketika seseorang memiliki obsesi absolut terhadap sebuah tujuan, tidak ada kata "mepet" atau "menunda". Segala cara yang rasional dan strategis akan ditempuh. Itulah DNA kami. Kami tidak mengenal jalan buntu. Apa yang kami targetkan untuk kami bangun, pasti akan kami wujudkan, apa pun harganya.
                 </p>
-              </div>
+              </motion.div>
             </div>
           </section>
 
-          <section className="py-32 px-6 md:px-20 bg-[#050505] relative border-t border-white/5">
-            <div className="mb-20">
+          {/* MARQUEE SECTION (LOGOS) */}
+          <section className="py-8 md:py-10 bg-[#050505] overflow-hidden relative z-20 flex items-center border-y border-white/5">
+            {/* Efek gradient di tepi agar logo memudar perlahan */}
+            <div className="absolute left-0 top-0 bottom-0 w-20 md:w-40 bg-gradient-to-r from-[#050505] to-transparent z-10 pointer-events-none" />
+            <div className="absolute right-0 top-0 bottom-0 w-20 md:w-40 bg-gradient-to-l from-[#050505] to-transparent z-10 pointer-events-none" />
+            
+            <Marquee autoFill speed={40} className="overflow-hidden flex items-center">
+              <div className="flex items-center gap-10 md:gap-20 px-5 md:px-10">
+                {/* Main Logo Anugerah */}
+                <div className="relative w-24 h-10 md:w-32 md:h-12 opacity-40 grayscale hover:opacity-100 hover:grayscale-0 transition-all duration-500 hover:drop-shadow-[0_0_15px_rgba(212,175,55,0.5)] cursor-pointer">
+                  <Image src="/Logo.png" alt="Anugerah Logo" fill className="object-contain" />
+                </div>
+                
+                {/* Venture Logos */}
+                {VENTURES_DATA.map((venture, idx) => (
+                  <div key={`mq-${idx}`} className="relative w-20 h-8 md:w-28 md:h-10 opacity-40 grayscale hover:opacity-100 hover:grayscale-0 transition-all duration-500 hover:drop-shadow-[0_0_15px_rgba(212,175,55,0.5)] cursor-pointer">
+                    <Image src={venture.logo} alt={venture.name} fill className="object-contain" />
+                  </div>
+                ))}
+              </div>
+            </Marquee>
+          </section>
+
+          <section className="py-32 px-6 md:px-20 bg-[#050505] relative border-t border-white/5 overflow-hidden">
+            <motion.div 
+              initial={{ opacity: 0, y: 30 }} 
+              whileInView={{ opacity: 1, y: 0 }} 
+              viewport={{ once: true, margin: "-50px" }}
+              transition={{ duration: 0.6, ease: "easeOut" }}
+              className="mb-20"
+            >
               <span className="text-[#D4AF37] text-xs uppercase tracking-[0.4em] font-bold block mb-4">Portfolio Ecosystem</span>
               <h3 className="text-4xl md:text-5xl font-black text-white tracking-tight">Visi yang Dieksekusi.</h3>
-            </div>
+            </motion.div>
 
-            {/* Grid disesuaikan untuk 5 item: 3 di atas, 2 di bawah */}
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+            {/* Grid disesuaikan untuk 4 item agar seimbang */}
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-5xl mx-auto">
               {VENTURES_DATA.map((venture, index) => (
-                <SpotlightCard key={index} venture={venture} />
+                <motion.div
+                  key={index}
+                  initial={{ opacity: 0, y: 40 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true, margin: "-50px" }}
+                  transition={{ duration: 0.5, ease: "easeOut", delay: index * 0.1 }}
+                >
+                  <SpotlightCard venture={venture} />
+                </motion.div>
               ))}
             </div>
           </section>
 
-          <footer className="py-12 border-t border-white/10 text-center flex flex-col items-center justify-center relative z-20">
-             <h2 className="text-[10vw] font-black text-[#0f0f0f] leading-none select-none tracking-tighter">ANUGERAH</h2>
-             <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
-               <p className="text-xs text-neutral-500 tracking-[0.3em] uppercase mix-blend-difference">© 2026 Anugerah Ventures. Execution Over Excuses.</p>
+          <footer className="py-12 border-t border-white/10 text-center flex flex-col items-center justify-center relative z-20 overflow-hidden">
+             <motion.h2 
+               initial={{ opacity: 0, scale: 0.9 }}
+               whileInView={{ opacity: 1, scale: 1 }}
+               viewport={{ once: true }}
+               transition={{ duration: 0.8, ease: "easeOut" }}
+               className="text-[18vw] md:text-[12vw] font-black text-[#0f0f0f] leading-none select-none tracking-tighter"
+             >
+               ANUGERAH
+             </motion.h2>
+             <div className="absolute inset-0 flex items-center justify-center pointer-events-none px-4">
+               <p className="text-[10px] md:text-xs text-neutral-500 tracking-[0.2em] md:tracking-[0.3em] uppercase mix-blend-difference text-center">© 2026 Anugerah Ventures. Execution Over Excuses.</p>
              </div>
           </footer>
         </motion.div>
